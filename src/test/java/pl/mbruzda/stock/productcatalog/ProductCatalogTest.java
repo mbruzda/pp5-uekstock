@@ -16,6 +16,7 @@ public class ProductCatalogTest {
 
     @Test
     void itAllowsAddPicture() {
+
         ProductCatalogFacade api = thereIsProductCatalog();
 
         String id = api.addPicture(
