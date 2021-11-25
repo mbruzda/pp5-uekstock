@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductCatalogTest {
     @Test
@@ -36,4 +36,4 @@ public class ProductCatalogTest {
         assertTrue(api.isProductExists(id));
     }
 }
-}
+
