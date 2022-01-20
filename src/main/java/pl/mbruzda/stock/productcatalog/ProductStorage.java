@@ -1,5 +1,6 @@
 package pl.mbruzda.stock.productcatalog;
 
+import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.Optional;
 

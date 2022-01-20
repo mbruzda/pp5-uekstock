@@ -43,4 +43,9 @@ public class ProductCatalog {
     public void empty() {
         repository.deleteAll();
     }
+
+    public Product getById(String productId) {
+        Product product = repository.findById(productId).get();
+        return product;
+    }
 }

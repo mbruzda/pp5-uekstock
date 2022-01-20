@@ -1,5 +1,6 @@
 package pl.mbruzda.stock.productcatalog;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository

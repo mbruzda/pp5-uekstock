@@ -13,4 +13,5 @@ import javax.persistence.Embeddable;
 public class Address {
     private String street;
     private String zip;
+    private String country;
 }
