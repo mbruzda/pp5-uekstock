@@ -8,6 +8,7 @@ import pl.mbruzda.stock.sales.offerting.OfferMaker;
 import pl.mbruzda.stock.sales.ordering.InMemoryReservationStorage;
 import pl.mbruzda.stock.sales.ordering.Reservation;
 import pl.mbruzda.stock.sales.ordering.ReservationDetails;
+import pl.mbruzda.stock.sales.payment.DummyPaymentGateway;
 
 import java.math.BigDecimal;
 import java.util.Optional;

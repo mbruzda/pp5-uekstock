@@ -1,20 +1,22 @@
 package pl.mbruzda.stock.sales;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.mbruzda.stock.sales.offerting.Offer;
+import pl.mbruzda.stock.sales.ordering.ReservationDetails;
+
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 @RestController
 public class SalesController {
 
-    public static final String CURRENT_CUSTOMER_ID = "Kuba";
-
+    public static final String CUSTOMER_ID_KEY = "CUSTOMER_ID";
     SalesFacade sales;
+    private HttpSession httpSession;
 
-    public SalesController(SalesFacade salesFacade) {
+    public SalesController(SalesFacade salesFacade, HttpSession httpSession) {
         this.sales = salesFacade;
+        this.httpSession = httpSession;
     }
 
     @PostMapping("/api/add-product/{productId}")
@@ -28,12 +30,26 @@ public class SalesController {
     }
 
     @PostMapping("/api/accept-offer")
-    public void acceptOffer(@PathVariable String productId, CustomerData customerData) {
-        sales.acceptOffer(getCurrentCustomerId(), customerData);
+    public ReservationDetails acceptOffer(@RequestBody CustomerData customerData) {
+        return sales.acceptOffer(getCurrentCustomerId(), customerData);
+    }
+
+    @GetMapping("/api/current-customer-id")
+    public String currentCustomerId() {
+        return getCurrentCustomerId();
     }
 
     private String getCurrentCustomerId() {
-        return CURRENT_CUSTOMER_ID;
+        Object currentCustomerId = httpSession.getAttribute(CUSTOMER_ID_KEY);
+
+        if (currentCustomerId != null) {
+            return (String) currentCustomerId;
+        }
+
+        String newCustomerId = UUID.randomUUID().toString();
+        httpSession.setAttribute(CUSTOMER_ID_KEY, newCustomerId);
+
+        return newCustomerId;
     }
 
 }

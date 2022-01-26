@@ -1,10 +1,9 @@
----
 server:
   port: 9999
 
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:test_db
     driverClassName: org.h2.Driver
     username: sa
     password: ~
@@ -12,3 +11,8 @@ spring:
     console:
       enabled: true
       path: /h2db
+
+
+payu:
+  merchantPosId: ${PAYU_MERCHANT_POS_ID:300746}
+  apiUrl: ${PAYU_API_URL:https://secure.snd.payu.com}

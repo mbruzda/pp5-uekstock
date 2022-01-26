@@ -4,6 +4,7 @@ package pl.mbruzda.stock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pl.mbruzda.stock.payment.PayU;
 import pl.mbruzda.stock.productcatalog.Product;
 import pl.mbruzda.stock.productcatalog.ProductCatalog;
 import pl.mbruzda.stock.productcatalog.ProductRepository;
@@ -11,6 +12,8 @@ import pl.mbruzda.stock.sales.*;
 import pl.mbruzda.stock.sales.offerting.OfferMaker;
 import pl.mbruzda.stock.sales.ordering.InMemoryReservationStorage;
 import pl.mbruzda.stock.sales.ordering.ReservationRepository;
+import pl.mbruzda.stock.sales.payment.DummyPaymentGateway;
+import pl.mbruzda.stock.sales.payment.PayUPaymentGateway;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -53,12 +56,13 @@ public class App {
     }
 
     @Bean
-    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider) {
+    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider, PayU payU) {
         return new SalesFacade(
                 new BasketStorage(),
                 productDetailsProvider,
                 new OfferMaker(productDetailsProvider),
-                new InMemoryReservationStorage(), new DummyPaymentGateway());
+                new InMemoryReservationStorage(),
+                new PayUPaymentGateway(payU));
     }
 
     @Bean
@@ -73,7 +77,7 @@ public class App {
     }
 
     @Bean
-    public JpaReservationStorage createJpaReservationStorage(ReservationRepository reservationRepository) {
+    public JpaReservationStorage createJpaReervationStorage(ReservationRepository reservationRepository) {
         return new JpaReservationStorage(reservationRepository);
     }
 }

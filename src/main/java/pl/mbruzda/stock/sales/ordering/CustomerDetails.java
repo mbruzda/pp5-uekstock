@@ -8,8 +8,7 @@ public class CustomerDetails {
     String lastname;
     String email;
 
-    CustomerDetails() {
-    }
+    CustomerDetails() {}
 
     public CustomerDetails(String firstname, String lastname, String email) {
         this.firstname = firstname;
@@ -19,5 +18,17 @@ public class CustomerDetails {
 
     public static CustomerDetails of(String firstname, String lastname, String email) {
         return new CustomerDetails(firstname, lastname, email);
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

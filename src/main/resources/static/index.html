@@ -14,6 +14,18 @@
 </div>
 <ul id="products" class="products__list"></ul>
 
+<div class="checkout__layer" style="display: none">
+    <button class="checkout__close">X</button>
+    <div class="checkout">
+        <form class="checkout__form" action="/api/accept-offer" method="post">
+            <input type="email" required name="email" placeholder="jan@kowalski.pl..."/>
+            <input type="text" required name="firstname" placeholder="Jan..."/>
+            <input type="text" required name="lastname" placeholder="Kowalski..."/>
+            <button type="submit">Checkout</button>
+        </form>
+    </div>
+</div>
+
 <script src="/js/main.js"></script>
 </body>
 </html>

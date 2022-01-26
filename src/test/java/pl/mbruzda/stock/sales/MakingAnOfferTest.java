@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pl.mbruzda.stock.sales.offerting.Offer;
 import pl.mbruzda.stock.sales.offerting.OfferMaker;
 import pl.mbruzda.stock.sales.ordering.InMemoryReservationStorage;
+import pl.mbruzda.stock.sales.payment.DummyPaymentGateway;
 
 import static org.junit.jupiter.api.Assertions.*;
 
